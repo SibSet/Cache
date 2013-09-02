@@ -1,0 +1,29 @@
+{
+    "name": "sibset/cache",
+    "description": "Common cache library",
+    "keywords": ["cache", "performance"],
+    "homepage": "http://sibset.ru",
+    "type": "library",
+    "stable": "require-dev",
+    "authors": [
+        {
+            "name": "Pavel Gopanenko",
+            "email": "p.gopanenko@sibset-team.ru"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "SibSet": "src/"
+        }
+    },
+    "target-dir": "SibSet/Cache",
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "require-dev": {
+        "predis/predis": ">=v0.8.4"
+    },
+    "suggest": {
+        "predis/predis": "Allows cache in Redis over Predis library"
+    }
+}
