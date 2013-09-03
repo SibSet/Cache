@@ -9,9 +9,7 @@ setup:
 test:
     php_unit:
         config:
-            - "phpunit.xml"
-        directory:
-            - "tests/"
+            - "tests/phpunit.xml"
         run_from: "phpunit/"
     php_mess_detector:
         allow_failures: true
