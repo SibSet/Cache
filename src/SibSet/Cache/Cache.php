@@ -8,32 +8,32 @@ use SibSet\Cache\Serializer\SerializerInterface;
 
 class Cache implements CacheInterface
 {
-    private $_adapter;
+    private $adapter;
 
-    private $_serializer;
+    private $serializer;
 
     public function __construct(AdapterInterface $adapter, SerializerInterface $serializer)
     {
-        $this->_adapter = $adapter;
-        $this->_serializer = $serializer;
+        $this->adapter = $adapter;
+        $this->serializer = $serializer;
     }
 
     public function getItem($key)
     {
-        $serialized = $this->_adapter->get($key);
-        $value = $serialized ? $this->_serializer->deserialize($serialized) : null;
+        $serialized = $this->adapter->get($key);
+        $value = $serialized ? $this->serializer->deserialize($serialized) : null;
 
         return $value;
     }
 
     public function setItem($key, $value, $ttl = null)
     {
-        $serialized = $this->_serializer->serialize($value);
+        $serialized = $this->serializer->serialize($value);
 
         if ($ttl) {
-            $this->_adapter->setExpired($key, $serialized, $ttl);
+            $this->adapter->setExpired($key, $serialized, $ttl);
         } else {
-            $this->_adapter->set($key, $serialized);
+            $this->adapter->set($key, $serialized);
         }
     }
 
@@ -50,11 +50,11 @@ class Cache implements CacheInterface
 
     public function removeItem($key)
     {
-        $this->_adapter->remove($key);
+        $this->adapter->remove($key);
     }
 
     public function existsItem($key)
     {
-        return $this->_adapter->exists($key);
+        return $this->adapter->exists($key);
     }
 }

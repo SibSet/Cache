@@ -6,11 +6,11 @@ use Predis\Client;
 
 class PredisAdapter implements AdapterInterface
 {
-    private $_client;
+    private $client;
 
     public function __construct(Client $client)
     {
-        $this->_client = $client;
+        $this->client = $client;
     }
 
     /**
@@ -18,7 +18,7 @@ class PredisAdapter implements AdapterInterface
      */
     public function get($key)
     {
-        return $this->_client->get($key);
+        return $this->client->get($key);
     }
 
     /**
@@ -26,7 +26,7 @@ class PredisAdapter implements AdapterInterface
      */
     public function set($key, $value)
     {
-        $this->_client->set($key, $value);
+        $this->client->set($key, $value);
     }
 
     /**
@@ -34,7 +34,7 @@ class PredisAdapter implements AdapterInterface
      */
     public function setExpired($key, $value, $ttl)
     {
-        $this->_client->setex($key, $ttl, $value);
+        $this->client->setex($key, $ttl, $value);
     }
 
     /**
@@ -42,7 +42,7 @@ class PredisAdapter implements AdapterInterface
      */
     public function remove($key)
     {
-        $this->_client->del($key);
+        $this->client->del($key);
     }
 
     /**
@@ -50,6 +50,6 @@ class PredisAdapter implements AdapterInterface
      */
     public function exists($key)
     {
-        return $this->_client->exists($key);
+        return $this->client->exists($key);
     }
 }

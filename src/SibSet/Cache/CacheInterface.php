@@ -4,13 +4,13 @@ namespace SibSet\Cache;
 
 interface CacheInterface
 {
-    function getItem($key);
+    public function getItem($key);
 
-    function setItem($key, $value, $ttl = null);
+    public function setItem($key, $value, $ttl = null);
 
-    function setItemToDate($key, $value, \DateTime $date);
+    public function setItemToDate($key, $value, \DateTime $date);
 
-    function removeItem($key);
+    public function removeItem($key);
 
-    function existsItem($key);
+    public function existsItem($key);
 }

@@ -4,24 +4,24 @@ namespace SibSet\Cache\Adapter;
 
 class ArrayAdapter implements AdapterInterface
 {
-    private $_values = array();
+    private $values = array();
 
-    private $_expired = array();
+    private $expired = array();
 
     private function removeExpired($key)
     {
-        if (!isset($this->_expired[$key]) || !isset($this->_values[$key])) {
+        if (!isset($this->expired[$key]) || !isset($this->values[$key])) {
             return;
         }
 
-        list($time, $ttl) = $this->_expired[$key];
+        list($time, $ttl) = $this->expired[$key];
 
         if (time() > ($time + $ttl)) {
-            unset($this->_values[$key]);
+            unset($this->values[$key]);
         }
 
-        if (!isset($this->_values[$key])) {
-            unset($this->_expired[$key]);
+        if (!isset($this->values[$key])) {
+            unset($this->expired[$key]);
         }
     }
 
@@ -29,31 +29,31 @@ class ArrayAdapter implements AdapterInterface
     {
         $this->removeExpired($key);
 
-        return $this->exists($key) ? $this->_values[$key] : null;
+        return $this->exists($key) ? $this->values[$key] : null;
     }
 
     public function set($key, $value)
     {
-        $this->_values[$key] = $value;
+        $this->values[$key] = $value;
     }
 
     public function setExpired($key, $value, $ttl)
     {
-        $this->_values[$key] = $value;
-        $this->_expired[$key] = array(time(), $ttl);
+        $this->values[$key] = $value;
+        $this->expired[$key] = array(time(), $ttl);
     }
 
     public function remove($key)
     {
         $this->removeExpired($key);
 
-        unset($this->_values[$key]);
+        unset($this->values[$key]);
     }
 
     public function exists($key)
     {
         $this->removeExpired($key);
 
-        return isset($this->_values[$key]);
+        return isset($this->values[$key]);
     }
 }

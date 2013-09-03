@@ -4,13 +4,13 @@ namespace SibSet\Cache\Adapter;
 
 interface AdapterInterface
 {
-    function get($key);
+    public function get($key);
 
-    function set($key, $value);
+    public function set($key, $value);
 
-    function setExpired($key, $value, $ttl);
+    public function setExpired($key, $value, $ttl);
 
-    function remove($key);
+    public function remove($key);
 
-    function exists($key);
+    public function exists($key);
 }
