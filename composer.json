@@ -16,7 +16,6 @@
             "SibSet": "src/"
         }
     },
-    "target-dir": "SibSet/Cache",
     "require": {
         "php": ">=5.3.3"
     },
