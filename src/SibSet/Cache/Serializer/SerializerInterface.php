@@ -4,7 +4,7 @@ namespace SibSet\Cache\Serializer;
 
 interface SerializerInterface
 {
-    function serialize($value);
+    public function serialize($value);
 
-    function deserialize($value);
+    public function deserialize($value);
 }
