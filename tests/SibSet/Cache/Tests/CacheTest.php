@@ -29,6 +29,18 @@ class CacheTest extends \PHPUnit_Framework_TestCase
         $this->cache = new Cache($this->adapter, $this->serializer);
     }
 
+    public function testKeyPrefix()
+    {
+        $prefix = 'preved:';
+
+        $this->cache->setPrefix($prefix);
+        $this->adapter->expects($this->once())
+            ->method('get')
+            ->with($this->equalTo('preved:medved'));
+
+        $this->cache->getItem('medved');
+    }
+
     public function testGetNotExists()
     {
         $key = 'some:test:key';

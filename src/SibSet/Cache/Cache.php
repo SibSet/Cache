@@ -32,7 +32,7 @@ class Cache implements CacheInterface
 
     private function calculateStoreKey($rawKey)
     {
-        return $this->prefix . $rawKey;
+        return $this->getPrefix() . $rawKey;
     }
 
     public function __construct(AdapterInterface $adapter, SerializerInterface $serializer)
