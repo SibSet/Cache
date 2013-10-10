@@ -12,6 +12,29 @@ class Cache implements CacheInterface
 
     private $serializer;
 
+    private $prefix = '';
+
+    /**
+     * @return mixed
+     */
+    public function getPrefix()
+    {
+        return $this->prefix;
+    }
+
+    /**
+     * @param string $prefix
+     */
+    public function setPrefix($prefix)
+    {
+        $this->prefix = (string) $prefix;
+    }
+
+    private function calculateStoreKey($rawKey)
+    {
+        return $this->prefix . $rawKey;
+    }
+
     public function __construct(AdapterInterface $adapter, SerializerInterface $serializer)
     {
         $this->adapter = $adapter;
@@ -20,7 +43,9 @@ class Cache implements CacheInterface
 
     public function getItem($key)
     {
-        $serialized = $this->adapter->get($key);
+        $storeKey = $this->calculateStoreKey($key);
+
+        $serialized = $this->adapter->get($storeKey);
         $value = $serialized ? $this->serializer->deserialize($serialized) : null;
 
         return $value;
@@ -28,12 +53,13 @@ class Cache implements CacheInterface
 
     public function setItem($key, $value, $ttl = null)
     {
+        $storeKey = $this->calculateStoreKey($key);
         $serialized = $this->serializer->serialize($value);
 
         if ($ttl) {
-            $this->adapter->setExpired($key, $serialized, $ttl);
+            $this->adapter->setExpired($storeKey, $serialized, $ttl);
         } else {
-            $this->adapter->set($key, $serialized);
+            $this->adapter->set($storeKey, $serialized);
         }
     }
 
@@ -45,16 +71,20 @@ class Cache implements CacheInterface
             throw new CacheException('Date in the past.');
         }
 
-        $this->setItem($key, $value, $ttl);
+        $storeKey = $this->calculateStoreKey($key);
+
+        $this->setItem($storeKey, $value, $ttl);
     }
 
     public function removeItem($key)
     {
-        $this->adapter->remove($key);
+        $storeKey = $this->calculateStoreKey($key);
+        $this->adapter->remove($storeKey);
     }
 
     public function existsItem($key)
     {
-        return $this->adapter->exists($key);
+        $storeKey = $this->calculateStoreKey($key);
+        return $this->adapter->exists($storeKey);
     }
 }
