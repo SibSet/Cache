@@ -23,6 +23,8 @@
         "predis/predis": ">=v0.8.4"
     },
     "suggest": {
-        "predis/predis": "Allows cache in Redis over Predis library"
+        "predis/predis": "Allows cache in Redis over Predis library",
+        "ext-apc": "Suggest APC usage",
+        "ext-memcache": "Memcache usage"
     }
 }
