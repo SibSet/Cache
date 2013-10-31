@@ -4,7 +4,7 @@ namespace SibSet\Cache\Adapter;
 
 use SibSet\Cache\Exception\EnvironmentException;
 
-class XCacheAdapter implements AdapterInterface
+class XcacheAdapter implements AdapterInterface
 {
     public function __construct()
     {
