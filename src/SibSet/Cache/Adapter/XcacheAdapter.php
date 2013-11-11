@@ -8,7 +8,7 @@ class XcacheAdapter implements AdapterInterface
 {
     public function __construct()
     {
-        if (!function_exists('xcache_get')) {
+        if (!extension_loaded('xcache')) {
             throw new EnvironmentException('XCache extension not loaded');
         }
     }

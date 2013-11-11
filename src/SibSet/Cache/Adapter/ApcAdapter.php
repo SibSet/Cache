@@ -8,7 +8,7 @@ class ApcAdapter implements AdapterInterface
 {
     public function __construct()
     {
-        if (!function_exists('apc_cache_info')) {
+        if (!extension_loaded('apc')) {
             throw new EnvironmentException('APC extension not loaded');
         }
     }
