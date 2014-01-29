@@ -1,5 +1,6 @@
 {
     "name": "sibset/cache",
+    "license": "MIT",
     "description": "Common cache library",
     "keywords": ["cache", "performance"],
     "homepage": "http://sibset.ru",
