@@ -35,7 +35,7 @@ class MemcacheAdapterTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->memcache = $this->getMock('\Memcache');
+        $this->memcache = $this->getMock('\Memcache', array('get', 'set', 'delete'));
         $this->adapter = new MemcacheAdapter($this->memcache);
     }
 
