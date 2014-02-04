@@ -4,6 +4,9 @@ namespace SibSet\Cache\Tests\Adapter;
 
 use SibSet\Cache\Adapter\MemcacheAdapter;
 
+/**
+ * @requires extension memcache
+ */
 class MemcacheAdapterTest extends \PHPUnit_Framework_TestCase
 {
     /**
