@@ -118,7 +118,7 @@ class MemcacheAdapterTest extends \PHPUnit_Framework_TestCase
         $key = 'some:test:key';
         $expected = uniqid(time());
 
-        $this->expectsMemcacheCall('set', array($key, $expected, MEMCACHE_COMPRESSED));
+        $this->expectsMemcacheCall('set', array($key, $expected, \MEMCACHE_COMPRESSED));
 
         $this->adapter->setCompressed(true);
         $this->adapter->set($key, $expected);
@@ -128,7 +128,7 @@ class MemcacheAdapterTest extends \PHPUnit_Framework_TestCase
     {
         $key = 'some:test:key';
 
-        $this->expectsMemcacheCall('get', array($key, MEMCACHE_COMPRESSED));
+        $this->expectsMemcacheCall('get', array($key, \MEMCACHE_COMPRESSED));
 
         $this->adapter->setCompressed(true);
         $this->adapter->get($key);

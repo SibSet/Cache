@@ -16,7 +16,7 @@ class MemcacheAdapter implements AdapterInterface
 
     private function getCompressedFlag()
     {
-        return $this->isCompressed() ? MEMCACHE_COMPRESSED : 0;
+        return $this->isCompressed() ? \MEMCACHE_COMPRESSED : 0;
     }
 
     public function setCompressed($value)
