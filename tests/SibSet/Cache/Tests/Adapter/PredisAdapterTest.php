@@ -27,7 +27,7 @@ class PredisAdapterTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->client = $this->getMock('\Predis\Client', array('get', 'set', 'setex', 'del', 'exists'));
+        $this->client = $this->getMock('\Predis\Client');
         $this->adapter = new PredisAdapter($this->client);
     }
 
